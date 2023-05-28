@@ -22,7 +22,7 @@
 - 기존 원문에서 core part를 반영하기 위한 시도가 있었으나 incidental part 정보를 학습에 활용한 경우는 없어 실제 Implicit Datasets에서 성능 향상이 거의 없었다.(모델이 핵심부분을 파악하기 힘듦)
 - 따라서, 본 연구에서는 학습 시 core part와 incidental part에 대한 정보를 명확히 반영함으로써 Implicit Datasets의 요약 성능을 개선하는 모델을 제안한다.
 
-![overall_method](https://github.com/Kwonrince/Implicit_summarization__ESWA/assets/72617445/eed0949a-fbe3-434a-b160-0ebaa7bdfb38)
+<p align="center"><img src="https://github.com/Kwonrince/Implicit_summarization__ESWA/assets/72617445/eed0949a-fbe3-434a-b160-0ebaa7bdfb38" width="80%" height="70%"></p>
 
 ## Model architecture
 - 제안한 모델은 생성 요약을 위한 transformer 기반의 encoder-decoder model에 core part인 positive와 incidental part인 negative를 학습하기 위한 추가적인 module(Contrastive Attention Module)을 추가하였다.
@@ -30,7 +30,7 @@
 - 이렇게 학습된 모델은 일반적인 fine-tuning 방식보다 문서의 key point를 집중해서 학습했을 것이라고 기대한다.
 - 추론 시에는 추가 module을 제거하고 요약문을 생성한다.
 
-![architecture](https://github.com/Kwonrince/Implicit_summarization__ESWA/assets/72617445/5266f051-aab8-44fd-b4be-415b6d5b75b4)
+<p align="center"><img src="https://github.com/Kwonrince/Implicit_summarization__ESWA/assets/72617445/5266f051-aab8-44fd-b4be-415b6d5b75b4" width="60%" height="60%"></p>
 
 
 ------------
@@ -41,8 +41,25 @@ $ pip install -r requirements.txt
 ```
 
 ## Data Preprocessing
-데이터셋 다운로드와 salience와 non-salience 문장 추출을 위한 전처리 필요
+Dataset download and preprocessing for salience and non-salience sentence extraction
 
 ```bash
 $ python preprocess_xsum.py
 ```
+
+## Train
+See `main.py` for detailed arguments.
+
+It works natively with pytorch's distributed data parallel.
+
+Note that the evaluation results of each epoch are inaccurate because they are not calculated based on the actual generated summary.
+
+```bash
+$ python main.py --devices [0_1_2_3_4_5_6_7] --batch_size [total_batch] --model_dir [./save/dir/name] --triplet [True/False]
+```
+
+## Inference
+
+```bash
+$ python inference.py --save_file [./save/dir/name/.pt]
+```77
