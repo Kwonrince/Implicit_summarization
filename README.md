@@ -62,4 +62,4 @@ $ python main.py --devices [0_1_2_3_4_5_6_7] --batch_size [total_batch] --model_
 
 ```bash
 $ python inference.py --save_file [./save/dir/name/.pt]
-```77
+```
