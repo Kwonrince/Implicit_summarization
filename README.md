@@ -5,11 +5,11 @@
 -------------
 
 ## Explicit/Implicit Datasets
-- Implicit Datasets(CNNDM, NYT)
+- Explicit Datasets(CNNDM, NYT)
   - gold summary와 원문의 문장들 간의 중요도 편차가 작은 데이터셋
   - 문서 내에 gold summary와 유사도가 큰 명확한 주제 문장이 있고 추가적인 부연 설명으로 이루어진 데이터셋
 
-- Explicit Datasets(XSum, Reddit, SAMSum)
+- Implicit Datasets(XSum, Reddit, SAMSum)
   - gold summary와 원문의 문장들 간의 중요도 편차가 큰 데이터셋
   - 문서 내에 summary가 implicitly 내재된 데이터셋
 
